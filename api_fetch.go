@@ -17,6 +17,11 @@ var RackspaceApi = map[string]interface{}{
 	"UrlChoice": PublicURL,
 }
 
+// Api for use with fcx
+var FcxApi = map[string]interface{}{
+	"Name":      "compute",
+	"UrlChoice": PublicURL,
+}
 
 //Populates an ApiCriteria struct with the api values
 //from one of the api maps 
@@ -33,6 +38,9 @@ func PopulateApi(variant string) (ApiCriteria, error){
 
 	case "rackspace": 
 		variantMap = RackspaceApi
+
+	case "fcx":
+		variantMap = FcxApi
 	}
 
 	err := mapstructure.Decode(variantMap,&Api)
